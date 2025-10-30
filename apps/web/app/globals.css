@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@import "@repo/tailwind-config";
+
+@theme {
+  --color-navbarbackground-500: #0f1419;
+  --color-logoicon-500: #9f7aea;
+  --color-logotext1-500: #9f7aea;
+  --color-logotext2-500: #08c7de;
+  --color-navbartextactive-500: #f8fafc;
+  --color-navbartextinactive-500: #9aa5b5;
+  --color-navbartexthover-500: #9f7aea;
+  --color-herobutton-500: #9f7aea;
+}

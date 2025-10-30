@@ -1,0 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String    @id @default(uuid())
+  username  String    @unique
+  email     String    @unique
+  password  String?
+  profile   String    @default("https://bankviewsolicitors.co.uk/wp-content/uploads/2023/08/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.jpg")
+  googleId  String?
+  
+  // A user can own many files
+  file      FileSave[]
+
+  // A user can own many collab projects
+  ownedCollabs Collab[] @relation("OwnerCollabs")
+
+  // A user can collaborate in many collabs
+  collaborations Collab[] @relation("Collaborators")
+}
+
+model Collab {
+  id         String   @id @default(uuid())
+  roomName   String   @unique
+  fileName   String
+  code       String?
+  language   String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  // Owner (one-to-many)
+  ownerId    String
+  owner      User     @relation("OwnerCollabs", fields: [ownerId], references: [id])
+
+  // Many-to-many collaborators
+  collaborators User[] @relation("Collaborators")
+}
+
+model FileSave{
+  id String @id @default(uuid())
+  language String 
+  name String 
+  code String
+  dev_count Int @default(1)
+  collab Boolean @default(false)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  ownerId String
+
+  owner User @relation(fields: [ownerId],references: [id])
+}
+
