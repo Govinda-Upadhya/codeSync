@@ -65,6 +65,7 @@ const CollabEditor = ({
     // 2️⃣ Yjs + WebRTC
     const Y = await import("yjs");
     const { WebrtcProvider } = await import("y-webrtc");
+
     const { MonacoBinding } = await import("y-monaco");
 
     const doc = new Y.Doc();
