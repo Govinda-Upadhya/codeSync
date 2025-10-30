@@ -16,7 +16,7 @@ RUN npm install && \
     npx prisma generate
 
 # Build your web app
-RUN cd /usr/src/app && npm run build --workspace web
+RUN cd /usr/src/app && npm run build
 
 EXPOSE 3001
 
