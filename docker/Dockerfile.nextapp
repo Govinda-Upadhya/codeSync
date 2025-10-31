@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 # Copy all necessary workspaces
 COPY ./packages ./packages
 COPY ./apps/web ./apps/web
-COPY ./apps/y-webrtc ./apps/y-webrtc
+COPY ./apps/y-webrtc ./y-webrtc
 COPY ./package.json ./package.json
 COPY ./package-lock.json ./package-lock.json
 COPY ./turbo.json ./turbo.json
