@@ -15,6 +15,9 @@ RUN npm install && \
     cd packages/db && \
     npx prisma generate
 
+RUN echo "=== CHECK STRUCTURE ===" && ls -R /usr/src/app
+
+
 # Build your web app
 RUN cd /usr/src/app && npm run build
 
