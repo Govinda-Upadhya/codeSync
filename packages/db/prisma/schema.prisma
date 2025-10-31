@@ -39,7 +39,7 @@ model Collab {
   code       String?
   language   String
   created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  updated_at DateTime @updatedAt @default(now())
   // Owner (one-to-many)
   ownerId    String
   owner      User     @relation("OwnerCollabs", fields: [ownerId], references: [id])
