@@ -64,7 +64,7 @@ const CollabEditor = ({
 
     // 2️⃣ Yjs + WebRTC
     const Y = await import("yjs");
-    const { WebrtcProvider } = await import("../../y-webrtc/src/y-webrtc");
+    const { WebrtcProvider } = await import("y-webrtc");
 
     const { MonacoBinding } = await import("y-monaco");
 
@@ -72,7 +72,7 @@ const CollabEditor = ({
     const yText = doc.getText("monaco");
 
     const provider = new WebrtcProvider(roomName, doc, {
-      signaling: ["ws://localhost:4444"],
+      signaling: ["ws://31.97.239.18:4444"],
     });
     const awareness = provider.awareness;
 
