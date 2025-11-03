@@ -72,7 +72,7 @@ const CollabEditor = ({
     const yText = doc.getText("monaco");
 
     const provider = new WebrtcProvider(roomName, doc, {
-      signaling: ["ws://31.97.239.18:4444"],
+      signaling: ["wss://31.97.239.18:4444"],
     });
     const awareness = provider.awareness;
 
