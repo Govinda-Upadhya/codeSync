@@ -7,7 +7,7 @@ export default async function Page({
 }: {
   params: { roomName: string[] };
 }) {
-  const roomName = params.roomName[0].trim();
+  const roomName = params!.roomName[0]!.trim();
   let contributor = true;
   // 1️⃣ Get the current session
   const session = await getServerSession();
@@ -33,7 +33,36 @@ export default async function Page({
   });
 
   if (!room) {
-    return <div className="text-white p-10">Room not found.</div>;
+    return (
+      <div className="flex flex-col items-center justify-center h-screen bg-[#0F1419] text-white px-6">
+        <div className="bg-[#1A1F25] p-10 rounded-2xl shadow-2xl border border-gray-800 text-center max-w-md w-full">
+          <h1 className="text-5xl font-extrabold mb-4 bg-gradient-to-r from-logotext1-500 to-logotext2-500 text-transparent bg-clip-text">
+            Room Not Found
+          </h1>
+
+          <p className="text-gray-400 text-lg mb-8">
+            The room you’re trying to join doesn’t exist or may have been
+            closed.
+          </p>
+
+          <div className="flex gap-4 justify-center">
+            <a
+              href="/joinSession"
+              className="bg-logotext1-500 hover:bg-logotext1-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 hover:scale-105"
+            >
+              Join Another Room
+            </a>
+
+            <a
+              href="/"
+              className="bg-navbarbackground-500 border border-gray-700 text-white px-6 py-3 rounded-lg font-semibold hover:bg-gray-800 transition-all duration-300 hover:scale-105"
+            >
+              Go Home
+            </a>
+          </div>
+        </div>
+      </div>
+    );
   }
   console.log(room.ownerId, user.id);
   if (room.ownerId == user.id) {

@@ -83,16 +83,33 @@ const CollabEditor = ({
       color: userColor.current,
     });
 
-    // Before binding
     console.log("Monaco before binding:", editor.getModel().getValue());
     console.log("Yjs before binding:", yText.toString());
 
     // Bind Monaco to Yjs
     new MonacoBinding(yText, editor.getModel(), new Set([editor]), awareness);
-    if (yText.toString().trim() === "") {
-      yText.insert(0, code);
+
+    // Listen for awareness updates
+    function maybeInsertInitialCode() {
+      const peerCount = Array.from(awareness.getStates().keys()).length;
+      console.log("👥 Current peer count:", peerCount);
+
+      // Only insert code if this document is still empty and there’s just one peer
+      if (peerCount === 1 && yText.toString().trim() === "") {
+        console.log("✅ First user detected — inserting default code...");
+        yText.insert(0, code);
+      }
     }
-    // After binding
+
+    // Call once now (in case this client really is first)
+    maybeInsertInitialCode();
+
+    // And also call again when awareness updates (other users connect)
+    awareness.on("update", () => {
+      maybeInsertInitialCode();
+    });
+
+    // Debug logs
     console.log("Monaco after binding:", editor.getModel().getValue());
     console.log("Yjs after binding:", yText.toString());
 

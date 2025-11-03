@@ -41,7 +41,10 @@ const Features = () => {
     },
   ];
   return (
-    <div className="flex flex-col bg-[#0F1419] justify-center items-center p-4 md:p-30">
+    <div
+      id="features"
+      className="flex flex-col bg-[#0F1419] justify-center items-center p-4 md:p-30"
+    >
       <div className="flex text-white text-3xl text-center md:text-5xl">
         Why choose CodeSync?
       </div>

@@ -23,7 +23,7 @@ export default async function Page() {
       icon: Users,
       title: "Join Session",
       description: "Join with your team",
-      navigate: "/home",
+      navigate: "/joinSession",
     },
     {
       icon: ShieldPlus,
