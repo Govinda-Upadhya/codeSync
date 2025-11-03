@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "@repo/tailwind-config";
 
 @theme {
   --color-navbarbackground-500: #0f1419;
