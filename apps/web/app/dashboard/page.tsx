@@ -2,7 +2,7 @@ import Dashnav from "../../components/dashnav";
 import { Plus, FolderCode, Users, ShieldPlus } from "lucide-react";
 import Functioncard from "../../components/functioncard";
 import ProjectsCard from "../../components/projectsCard";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { getServerSession } from "next-auth";
 import { prismaClient } from "@repo/db/client";
 import CollabProject from "../../components/collabProject";
@@ -51,7 +51,9 @@ export default async function Page() {
     },
     include: { collaborators: true },
   });
-
+  async function signout() {
+    signOut();
+  }
   console.log("hello", [...contributor, ...owned_projects]);
   return (
     <div className="flex flex-col sm:h-screen sm:w-screen md:w-min-[100vw] md:h-min-[100vh] items-center bg-navbarbackground-500 text-white">

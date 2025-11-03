@@ -6,6 +6,7 @@ import Navbar from "../components/navbar";
 
 export default async function Page() {
   const sessions = await getServerSession();
+  console.log("session after logoiut", sessions);
   let loggedIn = false;
   if (sessions) {
     loggedIn = true;
